@@ -28,6 +28,13 @@ const selectors = {
      * @returns {import('@playwright/test').Locator}
      */
     submitButton: (page) => page.getByRole('button', { name: 'Sign in' }),
+    
+    /**
+     * Logout button — asserted after login to confirm a session was established.
+     * @param {import('@playwright/test').Page} page
+     * @returns {import('@playwright/test').Locator}
+     */
+    logoutButton: (page) => page.getByRole('button', { name: 'Logout' }),
   },
 
   // ─── Sidebar / Navigation ──────────────────────────────────────────────────

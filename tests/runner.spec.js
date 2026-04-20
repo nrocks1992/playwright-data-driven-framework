@@ -37,6 +37,9 @@ async function login(page) {
  
   // Step: Click the submit button to trigger authentication
   await selectors.login.submitButton(page).click();
+
+    // Step: Assert the Logout button is visible to confirm a session was successfully established
+  await expect(selectors.login.logoutButton(page)).toBeVisible();
  
 }
 
