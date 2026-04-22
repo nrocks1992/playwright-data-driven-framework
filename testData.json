@@ -100,6 +100,50 @@
       "taskName": "Social media calendar",
       "expectedColumn": "To Do",
       "expectedTags": ["Feature"]
+    },
+    {
+      "id": "TC10",
+      "description": "Verify column 'Backlogged' does not exist in Web Application",
+      "email": "admin",
+      "password": "password123",
+      "project": "Web Application",
+      "taskName": "",
+      "expectedColumn": "",
+      "expectedTags": [],
+      "checkColumnAbsent": "Backlogged"
+    },
+    {
+      "id": "TC11",
+      "description": "Verify 'Social media calendar' task does not exist in Mobile Application",
+      "email": "admin",
+      "password": "password123",
+      "project": "Mobile Application",
+      "taskName": "",
+      "expectedColumn": "",
+      "expectedTags": [],
+      "absentTask": "Social media calendar"
+    },
+    {
+      "id": "TC12",
+      "description": "Verify 'Email campaign' is in 'In Progress' and tag 'Bug' does not exist",
+      "email": "admin",
+      "password": "password123",
+      "project": "Marketing Campaign",
+      "taskName": "Email campaign",
+      "expectedColumn": "In Progress",
+      "expectedTags": [],
+      "absentTags": ["Bug"]
+    },
+    {
+      "id": "TC13",
+      "description": "Verify 'Update Documentation' is NOT in 'In Progress' in Web Application",
+      "email": "admin",
+      "password": "password123",
+      "project": "Web Application",
+      "taskName": "Update Documentation",
+      "expectedColumn": "",
+      "expectedTags": [],
+      "notInColumn": "In Progress"
     }
   ]
 }

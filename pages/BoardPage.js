@@ -126,6 +126,71 @@ class BoardPage {
       ).toBeVisible();
     }
   }
-}
+  /**
+   * Asserts that a Kanban column heading with the given name is NOT present
+   * anywhere on the board. Used when a column is expected to be entirely absent.
+   *
+   * @param {import('@playwright/test').expect} expect
+   * @param {string} columnName  e.g. "Backlogged"
+   */
+  async assertColumnNotVisible(expect, columnName) {
+    // Step: Assert no column heading matching the name exists on the board
+    await expect(this.columnHeader(columnName)).toHaveCount(0);
+  }
 
+  /**
+   * Asserts that no task card with the given name exists anywhere on the board.
+   *
+   * @param {import('@playwright/test').expect} expect
+   * @param {string} taskName  e.g. "Social media calendar"
+   */
+  async assertTaskNotPresent(expect, taskName) {
+    // Step: Assert that no card with the given task name is rendered on the board
+    await expect(this.taskCard(taskName)).toHaveCount(0);
+  }
+
+  /**
+   * Asserts that a specific tag badge does NOT appear on the given task card.
+   *
+   * @param {import('@playwright/test').expect} expect
+   * @param {string}   taskName
+   * @param {string[]} absentTags  tags that must not be present on the card
+   */
+  async assertTagsAbsentOnTask(expect, taskName, absentTags) {
+    // Step: Resolve the specific task card by its exact h3 heading text
+    const card = this.page
+      .locator(`div.transition-shadow`)
+      .filter({ has: this.page.locator(`h3`, { hasText: new RegExp(`^${taskName}$`) }) })
+      .first();
+
+    for (const tag of absentTags) {
+      // Step: Assert each absent tag badge is not visible within this card
+      await expect(this.taskTag(card, tag)).toHaveCount(0);
+    }
+  }
+
+  /**
+   * Asserts that the given task card does NOT appear inside the specified column.
+   * The task may exist elsewhere on the board — only its presence in this
+   * particular column is disallowed.
+   *
+   * @param {import('@playwright/test').expect} expect
+   * @param {string} taskName
+   * @param {string} columnName
+   */
+  async assertTaskNotInColumn(expect, taskName, columnName) {
+    // Step: Locate the Kanban column heading that matches the column name
+    const columnHeader = this.columnHeader(columnName).first();
+
+    // Step: Traverse up to the column's parent container
+    const columnContainer = columnHeader.locator(
+      'xpath=ancestor::div[contains(@class,"col") or contains(@class,"column") or contains(@class,"section")][1]'
+    );
+
+    // Step: Assert the task card is NOT present inside this column container
+    await expect(
+      columnContainer.locator(this.taskCard(taskName))
+    ).toHaveCount(0);
+  }
+}
 module.exports = { BoardPage };

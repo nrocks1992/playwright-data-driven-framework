@@ -69,7 +69,7 @@ The script should input these credentials into the login form and submit it succ
 ### Test Case 7
 1. Login to Demo App.  
 2. Navigate to "Marketing Campaign."  
-3. Verify "Email campaign" is in the "In progress" column.  
+3. Verify "Email campaign" is in the "In Progress" column.  
 4. Confirm tags: "Design” "High Priority"
 
 ### Test Case 8
@@ -83,6 +83,27 @@ The script should input these credentials into the login form and submit it succ
 2. Navigate to "Marketing Campaign."  
 3. Verify "Social media calendar" is in the "To Do" column.  
 4. Confirm tags: "Feature”  
+
+### Test Case 10
+1. Login to Demo App.  
+2. Navigate to “Web Application”  
+3. Verify column “Backlogged” does not exist 
+
+### Test Case 11
+1. Login to Demo App.  
+2. Navigate to "Mobile Application."  
+3. Verify “Social media calendar” task does not exist
+
+### Test Case 12
+1. Login to Demo App.  
+2. Navigate to "Marketing Campaign”  
+3. Verify "Email campaign" is in the "In progress" column.  
+4. Verify tag “Bug” does not exist
+
+### Test Case 13
+1. Login to Demo App.  
+2. Navigate to “Web Application”
+3. Verify “Update Documentation” is NOT “In Progress”
 
 ## Submission Instructions
 Publish your code to a public GitHub repository and provide the link in the Google form.
