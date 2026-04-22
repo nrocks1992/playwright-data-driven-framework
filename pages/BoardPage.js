@@ -36,7 +36,6 @@ class BoardPage {
    * @returns {import('@playwright/test').Locator}
    */
   columnHeader(columnName) {
-    //return this.page.locator(`h2:has-text("${columnName}"), h3:has-text("${columnName}")`);
     return this.page.locator(`h2:has-text("${columnName}")`);
   }
 
@@ -52,15 +51,16 @@ class BoardPage {
   }
 
   /**
-   * Returns a locator for a tag/badge element inside a task card.
-   * Matches any element that carries a tag-like class and contains the
-   * supplied label text.
+   * Returns a locator for a tag/badge element scoped to a given parent locator.
+   * Scoping to the parent (e.g. a specific task card) ensures the tag is only
+   * matched within that element and not anywhere else on the page.
    *
+   * @param {import('@playwright/test').Locator} parent  e.g. a resolved task card locator
    * @param {string} tagName  e.g. "Feature" | "High Priority" | "Bug"
    * @returns {import('@playwright/test').Locator}
    */
-  taskTag(tagName) {
-    return this.page.locator(`span.rounded-full:text("${tagName}")`);
+  taskTag(parent, tagName) {
+    return parent.locator(`span.rounded-full:text("${tagName}")`);
   }
 
   // ─── Actions ──────────────────────────────────────────────────────────────
@@ -102,21 +102,27 @@ class BoardPage {
   }
 
   /**
-   * For every expected tag, locates the task card and asserts the tag badge is
-   * visible within it.
+   * For every expected tag, asserts the tag badge is visible strictly within
+   * the specific task card matched by its exact h3 text.
+   * Using nth-match ensures we resolve to exactly one card element, preventing
+   * false positives from identically-named tags on sibling cards in the same column.
    *
    * @param {import('@playwright/test').expect} expect
    * @param {string}   taskName
    * @param {string[]} expectedTags
    */
   async assertTaskTags(expect, taskName, expectedTags) {
-    // Step: Resolve the task card element that will contain all tag badges
-    const card = this.taskCard(taskName).first();
+    // Step: Resolve the card using an exact text filter so only the card whose
+    // h3 matches taskName precisely is selected — not sibling cards in the same column
+    const card = this.page
+      .locator(`div.transition-shadow`)
+      .filter({ has: this.page.locator(`h3`, { hasText: new RegExp(`^${taskName}$`) }) })
+      .first();
 
     for (const tag of expectedTags) {
-      // Step: Assert each expected tag badge is visible inside the task card
+      // Step: Assert each tag badge is visible strictly within this card
       await expect(
-        card.locator(this.taskTag(tag))
+        this.taskTag(card, tag)
       ).toBeVisible();
     }
   }
