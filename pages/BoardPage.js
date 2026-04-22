@@ -36,7 +36,8 @@ class BoardPage {
    * @returns {import('@playwright/test').Locator}
    */
   columnHeader(columnName) {
-    return this.page.locator(`h2:has-text("${columnName}"), h3:has-text("${columnName}")`);
+    //return this.page.locator(`h2:has-text("${columnName}"), h3:has-text("${columnName}")`);
+    return this.page.locator(`h2:has-text("${columnName}")`);
   }
 
   /**

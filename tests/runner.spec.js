@@ -41,8 +41,19 @@ test.describe('Demo App – Kanban Board Validation', () => {
       // Step: Open the application URL in the browser
       await loginPage.goto(url);
 
-      // Step: Perform login using shared credentials from testData.json
-      await loginPage.login(credentials.email, credentials.password, expect);
+      // Step: Perform login using the credentials from testData.json
+      await loginPage.login(tc.email, tc.password);
+
+      // ── Step 2: Assert login outcome ───────────────────────────────────────
+      if (!tc.expectedColumn) {
+        // Step: Invalid login — assert the error message is visible
+        await loginPage.assertInvalidLogin(expect);
+        return;
+      }
+ 
+      // Step: Valid login — assert the Logout button is visible
+      await loginPage.assertLoggedIn(expect);
+
 
       // ── Step 2: Navigate to the target project ─────────────────────────────
       // Step: Select the project from the sidebar to load its Kanban board

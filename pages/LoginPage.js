@@ -43,9 +43,8 @@ class LoginPage {
    *
    * @param {string} email
    * @param {string} password
-   * @param {import('@playwright/test').expect} expect
    */
-  async login(email, password, expect) {
+  async login(email, password) {
     // Step: Locate the email/username input by its label and type the configured credential
     await this.emailInput.fill(email);
 
@@ -54,10 +53,30 @@ class LoginPage {
 
     // Step: Click the submit button to trigger authentication
     await this.submitButton.click();
+  }
 
-    // Step: Wait for the Logout button to be visible to confirm a session was successfully established
+  // ─── Assertions ───────────────────────────────────────────────────────────
+ 
+  /**
+   * Asserts the Logout button is visible to confirm a session was successfully established.
+   *
+   * @param {import('@playwright/test').expect} expect
+   */
+  async assertLoggedIn(expect) {
+    // Step: Assert the Logout button is visible to confirm a session was successfully established
     await expect(this.logoutButton).toBeVisible();
   }
+ 
+  /**
+   * Asserts the invalid-credentials error message is visible after a failed
+   * login attempt.
+   *
+   * @param {import('@playwright/test').expect} expect
+   */
+  async assertInvalidLogin(expect) {
+    await expect(this.page.getByText('Invalid username or password')).toBeVisible();
+  }
+
 
 }
 

@@ -1,13 +1,21 @@
 {
-  "credentials": {
-    "email": "admin",
-    "password": "password123"
-  },
   "url": "https://animated-gingersnap-8cf7f2.netlify.app/",
   "testCases": [
     {
+      "id": "TC00",
+      "description": "Verify invalid credentials shows error message",
+      "email": "invalid_user",
+      "password": "invalid_password",
+      "project": "",
+      "taskName": "",
+      "expectedColumn": "",
+      "expectedTags": []
+    },
+    {
       "id": "TC01",
       "description": "Verify 'Implement user authentication' is in To Do with correct tags",
+      "email": "admin",
+      "password": "password123",
       "project": "Web Application",
       "taskName": "Implement user authentication",
       "expectedColumn": "To Do",
@@ -16,6 +24,8 @@
     {
       "id": "TC02",
       "description": "Verify 'Fix navigation bug' is in To Do with correct tags",
+      "email": "admin",
+      "password": "password123",
       "project": "Web Application",
       "taskName": "Fix navigation bug",
       "expectedColumn": "To Do",
@@ -24,6 +34,8 @@
     {
       "id": "TC03",
       "description": "Verify 'Design system updates' is in In Progress with correct tags",
+      "email": "admin",
+      "password": "password123",
       "project": "Web Application",
       "taskName": "Design system updates",
       "expectedColumn": "In Progress",
@@ -32,6 +44,8 @@
     {
       "id": "TC04",
       "description": "Verify 'Push notification system' is in To Do with correct tags",
+      "email": "admin",
+      "password": "password123",
       "project": "Mobile Application",
       "taskName": "Push notification system",
       "expectedColumn": "To Do",
@@ -40,6 +54,8 @@
     {
       "id": "TC05",
       "description": "Verify 'Offline mode' is in In Progress with correct tags",
+      "email": "admin",
+      "password": "password123",
       "project": "Mobile Application",
       "taskName": "Offline mode",
       "expectedColumn": "In Progress",
@@ -48,9 +64,31 @@
     {
       "id": "TC06",
       "description": "Verify 'App icon design' is in Done with correct tags",
+      "email": "admin",
+      "password": "password123",
       "project": "Mobile Application",
       "taskName": "App icon design",
       "expectedColumn": "Done",
+      "expectedTags": ["Design"]
+    },
+    {
+      "id": "TC07",
+      "description": "Verify 'Email campaign' is in In Progress with correct tags",
+      "email": "admin",
+      "password": "password123",
+      "project": "Marketing Campaign",
+      "taskName": "Email campaign",
+      "expectedColumn": "In Progress",
+      "expectedTags": ["Design","High Priority"]
+    },
+    {
+      "id": "TC08",
+      "description": "Verify 'Landing page copy' is in Review with correct tags",
+      "email": "admin",
+      "password": "password123",
+      "project": "Marketing Campaign",
+      "taskName": "Landing page copy",
+      "expectedColumn": "Review",
       "expectedTags": ["Design"]
     }
   ]
