@@ -59,6 +59,31 @@ The script should input these credentials into the login form and submit it succ
 3. Verify "App icon design" is in the "Done" column.  
 4. Confirm tags: "Design”  
 
+## Additional Test Cases
+
+### Test Case 0
+1. Navigate to Login page  
+2. Input invalid credentials
+3. Verify "Invalid username and password" text is visible
+
+### Test Case 7
+1. Login to Demo App.  
+2. Navigate to "Marketing Campaign."  
+3. Verify "Email campaign" is in the "In progress" column.  
+4. Confirm tags: "Design” "High Priority"
+
+### Test Case 8
+1. Login to Demo App.  
+2. Navigate to "Marketing Campaign."  
+3. Verify "Landing page copy" is in the "Review" column.  
+4. Confirm tags: "Design”  
+
+### Test Case 9
+1. Login to Demo App.  
+2. Navigate to "Marketing Campaign."  
+3. Verify "Social media calendar" is in the "To Do" column.  
+4. Confirm tags: "Feature”  
+
 ## Submission Instructions
 Publish your code to a public GitHub repository and provide the link in the Google form.
 Provide a short, 2-3 minute video walking through your code to share your solution and your thought process behind it. This is similar to how we share our work with clients and is designed to give us a glimpse into your communication style. 

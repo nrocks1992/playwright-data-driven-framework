@@ -90,6 +90,16 @@
       "taskName": "Landing page copy",
       "expectedColumn": "Review",
       "expectedTags": ["Design"]
+    },
+    {
+      "id": "TC09",
+      "description": "Verify 'Social media calendar' is in To Do with correct tags",
+      "email": "admin",
+      "password": "password123",
+      "project": "Marketing Campaign",
+      "taskName": "Social media calendar",
+      "expectedColumn": "To Do",
+      "expectedTags": ["Feature"]
     }
   ]
 }
